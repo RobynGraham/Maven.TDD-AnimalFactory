@@ -1,8 +1,11 @@
 package rocks.zipcodewilmington;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Mammal;
 
 import java.util.Date;
 
@@ -17,6 +20,22 @@ public class CatTest {
     // TODO - Create tests for `Integer getId()`
     // TODO - Create test to check Animal inheritance; google search `java instanceof keyword`
     // TODO - Create test to check Mammal inheritance; google search `java instanceof keyword`
+
+    Cat cat;
+
+    String name;
+    Date birthDate;
+    Integer id;
+
+    @Before
+
+    public void setUp() {
+        name = "Joe";
+        birthDate = new Date();
+        id = 0;
+
+        cat = new Cat(name, birthDate, id);
+    }
 
 
     @Test
@@ -40,4 +59,81 @@ public class CatTest {
         Assert.assertEquals(givenId, retrievedId);
     }
 
-}
+    @Test
+    public void setNameTest() {
+
+        // Given
+
+        String expected = "Mary";
+        cat.setName(expected);
+
+        // When
+
+        String actual = cat.getName();
+
+        //Then
+
+        Assert.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void setBirthDateTest() {
+
+        //Given
+        Date expected = new Date();
+
+        //When
+        Date actual = cat.getBirthDate();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void speakTest(){
+        //Given
+        String expected = "meow!";
+
+        //When
+        String actual = cat.speak();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void eatTest() {
+        Food food = new Food();
+        //Given
+        Integer expected = (1);
+        //When
+        cat.eat(food);
+        Integer actual = cat.getNumberOfMealsEaten();
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void getIdTest(){
+        //Given
+        Integer expected = 0;
+        //When
+        Integer actual = cat.getId();
+        //Then
+        Assert.assertEquals(expected, actual);
+
+    }
+    @Test
+    public void instanceOfAnimalTest(){
+
+        Assert.assertTrue(cat instanceof Animal);
+    }
+    @Test
+    public void instanceOfMammalTest(){
+        Assert.assertTrue(cat instanceof Mammal);
+    }
+    }
+
+
+
